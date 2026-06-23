@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="v_module" for="node" attr.name="module" attr.type="string"/>
+  <key id="e_weight" for="edge" attr.name="weight" attr.type="double"/>
+  <key id="e_sign" for="edge" attr.name="sign" attr.type="string"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="n0">
+      <data key="v_name">OTU_1</data>
+      <data key="v_module">M1</data>
+    </node>
+    <node id="n1">
+      <data key="v_name">OTU_2</data>
+      <data key="v_module">M2</data>
+    </node>
+    <node id="n2">
+      <data key="v_name">OTU_3</data>
+      <data key="v_module">M3</data>
+    </node>
+    <node id="n3">
+      <data key="v_name">OTU_4</data>
+      <data key="v_module">M4</data>
+    </node>
+    <node id="n4">
+      <data key="v_name">OTU_5</data>
+      <data key="v_module">M5</data>
+    </node>
+    <node id="n5">
+      <data key="v_name">OTU_6</data>
+      <data key="v_module">M6</data>
+    </node>
+    <node id="n6">
+      <data key="v_name">OTU_7</data>
+      <data key="v_module">M7</data>
+    </node>
+    <node id="n7">
+      <data key="v_name">OTU_8</data>
+      <data key="v_module">M8</data>
+    </node>
+    <node id="n8">
+      <data key="v_name">OTU_9</data>
+      <data key="v_module">M9</data>
+    </node>
+    <node id="n9">
+      <data key="v_name">OTU_10</data>
+      <data key="v_module">M10</data>
+    </node>
+    <node id="n10">
+      <data key="v_name">OTU_11</data>
+      <data key="v_module">M11</data>
+    </node>
+    <node id="n11">
+      <data key="v_name">OTU_12</data>
+      <data key="v_module">M12</data>
+    </node>
+    <node id="n12">
+      <data key="v_name">OTU_13</data>
+      <data key="v_module">M11</data>
+    </node>
+    <node id="n13">
+      <data key="v_name">OTU_14</data>
+      <data key="v_module">M13</data>
+    </node>
+    <node id="n14">
+      <data key="v_name">OTU_15</data>
+      <data key="v_module">M14</data>
+    </node>
+    <node id="n15">
+      <data key="v_name">OTU_16</data>
+      <data key="v_module">M15</data>
+    </node>
+    <node id="n16">
+      <data key="v_name">OTU_17</data>
+      <data key="v_module">M16</data>
+    </node>
+    <node id="n17">
+      <data key="v_name">OTU_18</data>
+      <data key="v_module">M17</data>
+    </node>
+    <node id="n18">
+      <data key="v_name">OTU_19</data>
+      <data key="v_module">M18</data>
+    </node>
+    <node id="n19">
+      <data key="v_name">OTU_20</data>
+      <data key="v_module">M17</data>
+    </node>
+    <node id="n20">
+      <data key="v_name">OTU_21</data>
+      <data key="v_module">M19</data>
+    </node>
+    <node id="n21">
+      <data key="v_name">OTU_22</data>
+      <data key="v_module">M19</data>
+    </node>
+    <node id="n22">
+      <data key="v_name">OTU_23</data>
+      <data key="v_module">M20</data>
+    </node>
+    <node id="n23">
+      <data key="v_name">OTU_24</data>
+      <data key="v_module">M21</data>
+    </node>
+    <node id="n24">
+      <data key="v_name">OTU_25</data>
+      <data key="v_module">M22</data>
+    </node>
+    <node id="n25">
+      <data key="v_name">OTU_26</data>
+      <data key="v_module">M23</data>
+    </node>
+    <node id="n26">
+      <data key="v_name">OTU_27</data>
+      <data key="v_module">M24</data>
+    </node>
+    <node id="n27">
+      <data key="v_name">OTU_28</data>
+      <data key="v_module">M25</data>
+    </node>
+    <node id="n28">
+      <data key="v_name">OTU_29</data>
+      <data key="v_module">M26</data>
+    </node>
+    <node id="n29">
+      <data key="v_name">OTU_30</data>
+      <data key="v_module">M27</data>
+    </node>
+    <node id="n30">
+      <data key="v_name">OTU_31</data>
+      <data key="v_module">M28</data>
+    </node>
+    <node id="n31">
+      <data key="v_name">OTU_32</data>
+      <data key="v_module">M29</data>
+    </node>
+    <node id="n32">
+      <data key="v_name">OTU_33</data>
+      <data key="v_module">M30</data>
+    </node>
+    <node id="n33">
+      <data key="v_name">OTU_34</data>
+      <data key="v_module">M31</data>
+    </node>
+    <node id="n34">
+      <data key="v_name">OTU_35</data>
+      <data key="v_module">M32</data>
+    </node>
+    <node id="n35">
+      <data key="v_name">OTU_36</data>
+      <data key="v_module">M33</data>
+    </node>
+    <node id="n36">
+      <data key="v_name">OTU_37</data>
+      <data key="v_module">M34</data>
+    </node>
+    <node id="n37">
+      <data key="v_name">OTU_38</data>
+      <data key="v_module">M35</data>
+    </node>
+    <node id="n38">
+      <data key="v_name">OTU_39</data>
+      <data key="v_module">M36</data>
+    </node>
+    <node id="n39">
+      <data key="v_name">OTU_40</data>
+      <data key="v_module">M37</data>
+    </node>
+    <node id="n40">
+      <data key="v_name">OTU_41</data>
+      <data key="v_module">M38</data>
+    </node>
+    <node id="n41">
+      <data key="v_name">OTU_42</data>
+      <data key="v_module">M39</data>
+    </node>
+    <node id="n42">
+      <data key="v_name">OTU_43</data>
+      <data key="v_module">M40</data>
+    </node>
+    <node id="n43">
+      <data key="v_name">OTU_44</data>
+      <data key="v_module">M35</data>
+    </node>
+    <node id="n44">
+      <data key="v_name">OTU_45</data>
+      <data key="v_module">M35</data>
+    </node>
+    <node id="n45">
+      <data key="v_name">OTU_46</data>
+      <data key="v_module">M41</data>
+    </node>
+    <node id="n46">
+      <data key="v_name">OTU_47</data>
+      <data key="v_module">M42</data>
+    </node>
+    <node id="n47">
+      <data key="v_name">OTU_48</data>
+      <data key="v_module">M42</data>
+    </node>
+    <node id="n48">
+      <data key="v_name">OTU_49</data>
+      <data key="v_module">M43</data>
+    </node>
+    <node id="n49">
+      <data key="v_name">OTU_50</data>
+      <data key="v_module">M44</data>
+    </node>
+    <edge source="n10" target="n12">
+      <data key="e_weight">0.628031145717464</data>
+      <data key="e_sign">positive</data>
+    </edge>
+    <edge source="n17" target="n19">
+      <data key="e_weight">0.605339265850946</data>
+      <data key="e_sign">positive</data>
+    </edge>
+    <edge source="n20" target="n21">
+      <data key="e_weight">0.627586206896552</data>
+      <data key="e_sign">positive</data>
+    </edge>
+    <edge source="n37" target="n43">
+      <data key="e_weight">0.608898776418243</data>
+      <data key="e_sign">positive</data>
+    </edge>
+    <edge source="n37" target="n44">
+      <data key="e_weight">0.686318131256952</data>
+      <data key="e_sign">positive</data>
+    </edge>
+    <edge source="n46" target="n47">
+      <data key="e_weight">0.616017797552836</data>
+      <data key="e_sign">positive</data>
+    </edge>
+  </graph>
+</graphml>

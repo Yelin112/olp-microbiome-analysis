@@ -1,0 +1,92 @@
+
+================================================================================
+              重叠与相似性分析 - 统计分析总结报告
+================================================================================
+
+【1. 层次聚类统计】
+  聚类方法: Ward's D2
+  距离度量: Euclidean
+  Cophenetic correlation: 0.712
+  解读: 0.712 （良好）
+  
+【2. 主成分分析（PCA）统计】
+  PC1 解释方差: 41.95%
+  PC2 解释方差: 35.70%
+  累计解释方差: 77.66%
+  
+  PC1主要贡献细胞（前3）:
+    数据不可用
+  
+  PC2主要贡献细胞（前3）:
+    数据不可用
+  
+  PERMANOVA检验:
+    R² = 1.000
+    F = NA
+    p-value = NA NA
+    
+【3. 相关性分析统计】
+  总配对数: 21
+  显著相关对（p<0.05）: 10 (47.6%)
+  正相关: 14
+  负相关: 7
+  
+【4. 重叠分析统计（Fisher精确检验）】
+  OSF显著变化细胞数: 9
+  
+  各组与OSF重叠的显著性:
+    AB: 重叠率=44.4%, OR=2.35, p=0.6084 
+    Ai: 重叠率=22.2%, OR=1.91, p=1.0000 
+    Am: 重叠率=33.3%, OR=3.31, p=0.5692 
+    Av: 重叠率=22.2%, OR=1.91, p=1.0000 
+    B: 重叠率=55.6%, OR=2.10, p=0.6193 
+    Pm: 重叠率=33.3%, OR=Inf, p=0.2000 
+
+【5. 网络分析统计】
+  网络阈值: |r| > 0.30
+  总边数: 14
+  显著边数: 10 (p<0.05)
+  平均相关强度: 0.665
+  
+【统计解释】
+  * p < 0.05: 显著
+  ** p < 0.01: 高度显著
+  *** p < 0.001: 极显著
+  
+  Cophenetic correlation:
+    > 0.75: 聚类结构优秀
+    0.60-0.75: 聚类结构良好
+    < 0.60: 聚类结构较差
+    
+  PERMANOVA:
+    检验组间细胞变化模式是否显著不同
+    R²: 组间差异占总变异的比例
+    
+  Fisher精确检验:
+    检验两组显著变化细胞的重叠是否超过随机期望
+    OR > 1: 重叠高于随机期望
+    OR < 1: 重叠低于随机期望
+
+【输出文件】
+  Visualizations (PDF + PPTX vector):
+    • 1_hierarchical_clustering_dendrogram
+    • 2_pca_analysis
+    • 3_correlation_clustered_heatmap
+    • 4_correlation_network
+    • 5a_overlap_heatmap          (Plan A: presence/absence heatmap)
+    • 5b_overlap_lollipop         (Plan D: lollipop + Fisher OR)
+    • 5c_overlap_pie              (donut chart: overlap composition per group)
+    • 6_chord_diagram
+  
+  统计数据表格:
+    • correlation_matrix.csv - 相关系数矩阵
+    • correlation_pvalues.csv - 相关性p值矩阵
+    • pca_variance_explained.csv - PCA方差解释
+    • pca_loadings.csv - PCA载荷（细胞贡献）
+    • overlap_analysis_with_stats.csv - 重叠分析+Fisher检验
+    • network_edges.csv - 网络边+统计信息
+
+================================================================================
+✅ 统计分析完成！
+================================================================================
+

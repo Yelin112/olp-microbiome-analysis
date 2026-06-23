@@ -1,0 +1,10 @@
+"Genus","Pattern","Mean_abundance","Log_abundance","Degree","Max_EffectSize"
+"Enterobacter","Full Recovery",0.00084611871120396,-3.07205572543285,1,0.7621
+"Ellin6067","Recovery (U-shape)",0.000898533144641373,-3.04598282979519,8,0.6237
+"Pedosphaeraceae","Recovery (U-shape)",0.00023586495046836,-3.62549919822335,6,0
+"Pseudarthrobacter","Recovery (U-shape)",0.0110182626861648,-1.95784746374582,6,0
+"Ilumatobacter","Recovery (U-shape)",0.000438034908012669,-3.35750094728737,7,0
+"Virgisporangium","Recovery (U-shape)",0.000228377174263016,-3.63944980171303,7,0
+"Dongia","Recovery (U-shape)",0.000288279383905774,-3.53868251614461,6,0
+"IMCC26256","Recovery (U-shape)",0.000692619298994392,-3.15887883172249,7,0
+"Ruminococcus_gauvreauii_group","Full Recovery",0.00065892430607034,-3.18050587558116,4,0

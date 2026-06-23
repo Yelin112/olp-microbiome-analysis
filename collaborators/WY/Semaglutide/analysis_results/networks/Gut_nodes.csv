@@ -1,0 +1,33 @@
+"Genus","Pattern","Mean_abundance","Log_abundance","Degree","Max_EffectSize"
+"Lachnospiraceae_UCG-006","Full Recovery",0.00184573683461749,-2.73359498838027,1,0.8944
+"Prevotellaceae_Ga6A1_group","No Clear Pattern",0.00034443770544586,-3.46163025978147,3,0.7971
+"Erysipelotrichaceae","Full Recovery",0.000467986012834048,-3.3288401096081,2,0.7581
+"UCG-010","Worsening",0.000655180417967668,-3.18297673416863,3,0.646
+"Parabacteroides","Full Recovery",0.00156120133881439,-2.80626299433764,1,0.6264
+"Monoglobus","Recovery (Inverted-U)",0.000426803243704652,-3.36875592682926,4,0.6264
+"Muribaculaceae","Recovery (Inverted-U)",0.139654514005885,-0.854941912415152,11,0
+"Clostridium_sensu_stricto_1","Recovery (Inverted-U)",0.00671653525619426,-2.17279004554527,10,0
+"Lachnoclostridium","Recovery (Inverted-U)",0.00643574364849383,-2.19133378685697,11,0
+"Anaerofustis","Recovery (Inverted-U)",0.000205913845646981,-3.68421044753197,8,0
+"Mucispirillum","Recovery (U-shape)",0.0122874407529708,-1.91050322007052,7,0
+"Rikenellaceae_RC9_gut_group","Recovery (Inverted-U)",0.00170721297481861,-2.76745798375103,5,0
+"Prevotellaceae_UCG-001","Recovery (Inverted-U)",0.00106700810926163,-2.97142544974734,2,0
+"Bifidobacterium","Recovery (Inverted-U)",0.00411078913673428,-2.38596916519489,8,0
+"Candidatus_Arthromitus","Recovery (U-shape)",0.0545372179916287,-1.26329905651258,9,0
+"Coriobacteriaceae_UCG-002","Recovery (Inverted-U)",0.00658549917260073,-2.18134535839621,9,0
+"Clostridia_UCG-014","Recovery (Inverted-U)",0.00488577397398747,-2.3109777477572,7,0
+"ASF356","Recovery (U-shape)",0.00168474964620257,-2.77320692279905,7,0
+"Dubosiella","Recovery (Inverted-U)",0.00160987188414913,-2.79293899851287,8,0
+"Muribaculum","Recovery (Inverted-U)",0.00354171814512808,-2.45066339829758,5,0
+"Parasutterella","Recovery (Inverted-U)",0.00271057498633481,-2.56677838101236,7,0
+"Enterorhabdus","Recovery (Inverted-U)",0.00181952961789878,-2.73980225120662,4,0
+"Faecalibaculum","Worsening",0.0114899925871016,-1.9396424555169,6,0
+"Eubacterium_nodatum_group","Worsening",0.000482961565244738,-3.3151891273327,2,0
+"Prevotellaceae_UCG-003","Worsening",0.00025084050287905,-3.59887442211416,1,0
+"Lactobacillus","Worsening",0.171178051830387,-0.766549383532193,3,0
+"Prevotellaceae_NK3B31_group","Full Recovery",0.00152001856968499,-2.81786548373629,2,0.7485
+"Anaerotruncus","Worsening",0.00422310577981445,-2.37426521476058,3,0
+"Lachnospiraceae_NK4A136_group","Recovery (Inverted-U)",0.050190563904426,-1.29936927205094,2,0
+"Turicibacter","Recovery (Inverted-U)",0.00789960389663874,-2.1023397113736,5,0
+"Lachnospiraceae_UCG-001","Worsening",0.00180455406548809,-2.74338950253398,1,0
+"Romboutsia","Worsening",0.00938592747339968,-2.02747653762834,1,0

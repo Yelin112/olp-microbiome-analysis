@@ -1,0 +1,2 @@
+compare	all	up	down	threshold
+BvsA	394	102	292	DESeq2 pvalue<=0.05 |log2FoldChange|>=1

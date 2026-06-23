@@ -1,0 +1,58 @@
+# === R ===
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.RData
+*.rda
+*.rds
+.Rproj.user/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# === 共享数据 (样本元数据不入库，注意隐私) ===
+data/metadata/*
+!data/metadata/.gitkeep
+
+# === 输出文件 (可重新生成) ===
+*.pdf
+*.png
+*.svg
+*.tiff
+*.tif
+*.jpg
+*.emf
+!output/.gitkeep
+!**/output/.gitkeep
+
+# === 大型二进制 ===
+*.qza
+*.qzv
+*.biom
+*.zip
+*.tar.gz
+
+# === 系统和 IDE ===
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.code-workspace
+
+# === 临时文件 ===
+*.tmp
+*.temp
+*.log
+*.bak
+*~
+
+# === 含患者隐私信息的文件 (谨慎!) ===
+**/*metadata*.csv
+**/*临床*.xlsx
+**/*Clinics*.xlsx

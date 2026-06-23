@@ -1,0 +1,13 @@
+Sample	Site	Condition	Treatment	GroupInAll	FileName
+dbN_1_F	Fecal	DB	Control	Fecal_DB_Control	dbN.1.F.fastq.gz
+dbN_2_F	Fecal	DB	Control	Fecal_DB_Control	dbN.2.F.fastq.gz
+dbN_3_F	Fecal	DB	Control	Fecal_DB_Control	dbN.3.F.fastq.gz
+dbS_1_F	Fecal	DB	Treated	Fecal_DB_Treated	dbS.1.F.fastq.gz
+dbS_2_F	Fecal	DB	Treated	Fecal_DB_Treated	dbS.2.F.fastq.gz
+dbS_3_F	Fecal	DB	Treated	Fecal_DB_Treated	dbS.3.F.fastq.gz
+WTN_1_F	Fecal	WT	Control	Fecal_WT_Control	WTN.1.F.fastq.gz
+WTN_2_F	Fecal	WT	Control	Fecal_WT_Control	WTN.2.F.fastq.gz
+WTN_3_F	Fecal	WT	Control	Fecal_WT_Control	WTN.3.F.fastq.gz
+WTS_1_F	Fecal	WT	Treated	Fecal_WT_Treated	WTS.1.F.fastq.gz
+WTS_2_F	Fecal	WT	Treated	Fecal_WT_Treated	WTS.2.F.fastq.gz
+WTS_3_F	Fecal	WT	Treated	Fecal_WT_Treated	WTS.3.F.fastq.gz

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//e/打工人/Zeng/2023-3 OLP Microbiome/分析/**)",
+      "Bash(sed -i 's|ggsave\\(\"test_|ggsave\\(\"figures/test_|g' 'e:/打工人/Zeng/2023-3 OLP Microbiome/分析/Scripts/r_functions/dev/enrich_plot/tests/test_bubble.R')",
+      "Bash(sed -i 's|ggsave\\(\"test_|ggsave\\(\"figures/test_|g' 'e:/打工人/Zeng/2023-3 OLP Microbiome/分析/Scripts/r_functions/dev/enrich_plot/tests/test_bar_lollipop.R')",
+      "Bash(sed -i 's|ggsave\\(\"test_|ggsave\\(\"figures/test_|g' 'e:/打工人/Zeng/2023-3 OLP Microbiome/分析/Scripts/r_functions/dev/enrich_plot/tests/test_combined.R')",
+      "Bash(awk -F',' '{print $8, $4}')",
+      "Bash(awk -F',' '{print $4, \"|\", $5, \"|\", $7, \"|\", $8, \"|\", $11}')",
+      "Bash(awk -F',' '{print $8, $4, $11}')"
+    ]
+  }
+}

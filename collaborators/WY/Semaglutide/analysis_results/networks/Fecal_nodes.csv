@@ -1,0 +1,13 @@
+"Genus","Pattern","Mean_abundance","Log_abundance","Degree","Max_EffectSize"
+"Lactococcus","Recovery (U-shape)",0.000636460977454306,-3.19554639567044,2,0
+"Christensenellaceae_R-7_group","Recovery (U-shape)",0.000651436529864995,-3.18546173084045,2,0
+"Mucispirillum","Recovery (Inverted-U)",0.00591908709032504,-2.22767190432955,5,0
+"Lactobacillus","Recovery (U-shape)",0.190399173349507,-0.720332660548708,2,0
+"Eubacterium_ventriosum_group","Recovery (Inverted-U)",0.000475473789039393,-3.32196098503331,2,0
+"Lachnoclostridium","Recovery (Inverted-U)",0.000876069816025339,-3.05696583478934,4,0
+"Odoribacter","Worsening",0.00242603949053171,-2.61492315717425,4,0
+"Desulfovibrio","Worsening",0.00405837470329687,-2.39154085898983,3,0
+"Bacteroides","Recovery (U-shape)",0.0336163712738954,-1.47343624942945,1,0
+"Parabacteroides","Recovery (U-shape)",0.0021564795471393,-2.66605331269579,1,0
+"GCA-900066575","Recovery (Inverted-U)",0.0011531175356231,-2.93774996026761,4,0
+"Enterococcus","Worsening",0.00225756452591145,-2.64616749737756,2,0

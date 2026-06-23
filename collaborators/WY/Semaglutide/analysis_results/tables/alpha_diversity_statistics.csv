@@ -1,0 +1,9 @@
+"Site","Metric","p_value"
+"Gut","Shannon",0.621653443995611
+"Gut","Observed",0.6675564300204
+"Fecal","Shannon",0.644369805637026
+"Fecal","Observed",0.715178904687526
+"Lung","Shannon",0.187448782391578
+"Lung","Observed",0.577745615593788
+"Oral","Shannon",0.177429282882744
+"Oral","Observed",0.532545493029088

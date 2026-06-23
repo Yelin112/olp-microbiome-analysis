@@ -1,0 +1,4 @@
+"Site","Method","P_value","Comparison"
+"Lung","MedianCLV",0.7,"DB_Treated_vs_DB_Control"
+"Lung","ShannonJSD",0.4,"DB_Treated_vs_DB_Control"
+"Lung","CloudScore",0.7,"DB_Treated_vs_DB_Control"

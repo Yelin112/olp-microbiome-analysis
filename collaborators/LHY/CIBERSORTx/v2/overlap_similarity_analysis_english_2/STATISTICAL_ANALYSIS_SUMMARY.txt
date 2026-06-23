@@ -1,0 +1,102 @@
+
+================================================================================
+           Overlap & Similarity Analysis - Statistical Summary
+================================================================================
+
+【0. Cell Composition Overview】
+  Total groups analyzed: 9 (Normal, OSF, PBS, Am, Pm, Av, Ai, AB, B)
+  Cell types profiled: 15
+  Composition data saved to: cell_composition_percentages.csv
+  Visualization: 0_cell_composition_stacked_bar.pdf
+
+【1. Hierarchical Clustering Statistics】
+  Method: Ward's D2
+  Distance: Euclidean
+  Cophenetic correlation: 0.712
+  Interpretation: Good
+  
+【2. Principal Component Analysis (PCA)】
+  PC1 variance explained: 58.88%
+  PC2 variance explained: 33.81%
+  Cumulative variance: 92.69%
+  
+  Top PC1 contributors:
+    1. Macrophages (loading = 0.795)
+    2. Epithelial (loading = 0.411)
+    3. Fibroblasts (loading = 0.354)
+  
+  Top PC2 contributors:
+    1. Epithelial (loading = -0.883)
+    2. Macrophages (loading = 0.433)
+    3. Tprolif (loading = -0.122)
+  
+  PERMANOVA test:
+    R² = 1.000
+    F = NA
+    p-value = NA NA
+    
+【3. Correlation Analysis】
+  Total pairs: 21
+  Significant pairs (p<0.05): 10 (47.6%)
+  Positive correlations: 14
+  Negative correlations: 7
+  
+【4. Overlap Analysis (Fisher's Exact Test)】
+  OSF significant cells: 9
+  
+  Overlap with each group:
+    AB: overlap=44.4%, OR=2.35, p=0.6084 
+    Ai: overlap=22.2%, OR=1.91, p=1.0000 
+    Am: overlap=33.3%, OR=3.31, p=0.5692 
+    Av: overlap=22.2%, OR=1.91, p=1.0000 
+    B: overlap=55.6%, OR=2.10, p=0.6193 
+    Pm: overlap=33.3%, OR=Inf, p=0.2000 
+
+【5. Network Analysis】
+  Threshold: |r| > 0.30
+  Total edges: 14
+  Significant edges: 10 (p<0.05)
+  Mean correlation: 0.665
+  
+【Statistical Interpretation】
+  * p < 0.05: Significant
+  ** p < 0.01: Highly significant
+  *** p < 0.001: Extremely significant
+  
+  Cophenetic correlation:
+    > 0.75: Excellent clustering
+    0.60-0.75: Good clustering
+    < 0.60: Poor clustering
+    
+  PERMANOVA:
+    Tests if between-group differences are significant
+    R²: Proportion of variance explained by groups
+    
+  Fisher's Exact Test:
+    Tests if overlap exceeds random expectation
+    OR > 1: Overlap higher than expected
+    OR < 1: Overlap lower than expected
+
+【Output Files】
+  Visualizations (PDF format):
+    • 0_cell_composition_stacked_bar.pdf - NEW!
+    • 1_hierarchical_clustering_dendrogram.pdf
+    • 2_pca_analysis.pdf
+    • 3_correlation_clustered_heatmap.pdf
+    • 4_correlation_network.pdf
+    • 5_overlap_analysis.pdf
+    • 6_chord_diagram.pdf
+  
+  Data tables:
+    • cell_composition_percentages.csv - NEW!
+    • correlation_matrix.csv
+    • correlation_pvalues.csv
+    • pca_variance_explained.csv
+    • pca_loadings.csv
+    • overlap_analysis_with_stats.csv
+    • network_edges.csv
+
+================================================================================
+✅ Statistical analysis complete!
+================================================================================
+

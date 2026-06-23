@@ -1,0 +1,8 @@
+Group,Significant_Cells,Count
+OSF,"CD4.T_cells, Endothelial, Epithelial, Fibroblasts, Macrophages, Myocytes, Plasma, Treg",8
+AB,"DCs, Epithelial, Fibroblasts, Macrophages, Myocytes, Tprolif",6
+Ai,"Epithelial, Myocytes, Tprolif",3
+Am,"Epithelial, Fibroblasts, Myocytes, Tprolif",4
+Av,"Epithelial, Myocytes, Tprolif",3
+B,"CD8.T_cells, Endothelial, Epithelial, Fibroblasts, Macrophages, Myocytes, Myofibroblasts, Tprolif",8
+Pm,"Epithelial, Fibroblasts, Myocytes",3

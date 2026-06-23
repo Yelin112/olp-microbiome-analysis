@@ -1,0 +1,4 @@
+"Comparison","N_significant","Mean_EffectSize","Max_EffectSize"
+"DB_Control - DB_Treated",2,0.6929,0.7621
+"DB_Control - WT_Control",10,0.73989,0.8086
+"DB_Treated - WT_Control",1,0.795,0.795

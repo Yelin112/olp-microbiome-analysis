@@ -1,0 +1,4 @@
+"Site","Method","P_value","Comparison"
+"Fecal","MedianCLV",1,"DB_Treated_vs_DB_Control"
+"Fecal","ShannonJSD",0.7,"DB_Treated_vs_DB_Control"
+"Fecal","CloudScore",0.2,"DB_Treated_vs_DB_Control"

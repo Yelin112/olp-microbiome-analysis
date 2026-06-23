@@ -1,0 +1,13 @@
+Sample	Site	Condition	Treatment	GroupInAll	FileName
+dbN_1_B	Gut	DB	Control	Gut_DB_Control	dbN.1.B.fastq.gz
+dbN_2_B	Gut	DB	Control	Gut_DB_Control	dbN.2.B.fastq.gz
+dbN_3_B	Gut	DB	Control	Gut_DB_Control	dbN.3.B.fastq.gz
+dbS_1_B	Gut	DB	Treated	Gut_DB_Treated	dbS.1.B.fastq.gz
+dbS_2_B	Gut	DB	Treated	Gut_DB_Treated	dbS.2.B.fastq.gz
+dbS_3_B	Gut	DB	Treated	Gut_DB_Treated	dbS.3.B.fastq.gz
+WTN_1_B	Gut	WT	Control	Gut_WT_Control	WTN.1.B.fastq.gz
+WTN_2_B	Gut	WT	Control	Gut_WT_Control	WTN.2.B.fastq.gz
+WTN_3_B	Gut	WT	Control	Gut_WT_Control	WTN.3.B.fastq.gz
+WTS_1_B	Gut	WT	Treated	Gut_WT_Treated	WTS.1.B.fastq.gz
+WTS_2_B	Gut	WT	Treated	Gut_WT_Treated	WTS.2.B.fastq.gz
+WTS_3_B	Gut	WT	Treated	Gut_WT_Treated	WTS.3.B.fastq.gz

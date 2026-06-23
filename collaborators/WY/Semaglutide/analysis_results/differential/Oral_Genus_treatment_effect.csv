@@ -1,0 +1,6 @@
+"Feature","Comparison","Group","Method","EffectSize","EffectSize_type","Z_statistic","P.unadj","P.adj","Significance"
+"Anoxybacillus","DB_Control - DB_Treated","DB_Treated","Dunn",0.7971,"r (|Z|/sqrt(N))",-2.3912,0.01679522311226,0.02519283466839,"*"
+"Delftia","DB_Control - DB_Treated","DB_Treated","Dunn",0.7454,"r (|Z|/sqrt(N))",-2.2361,0.0253473186774683,0.0760419560324048,"ns"
+"Bacillus","DB_Control - DB_Treated","DB_Treated","Dunn",0.7235,"r (|Z|/sqrt(N))",-2.1706,0.0299617665775788,0.0898852997327364,"ns"
+"Cutibacterium","DB_Control - DB_Treated","DB_Treated","Dunn",0.6487,"r (|Z|/sqrt(N))",-1.9461,0.0516486028634198,0.0774729042951297,"ns"
+"Streptococcus","DB_Control - DB_Treated","DB_Control","Dunn",0.646,"r (|Z|/sqrt(N))",1.9379,0.0526323025657406,0.0789484538486109,"ns"

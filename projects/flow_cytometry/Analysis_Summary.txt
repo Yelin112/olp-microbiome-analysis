@@ -1,0 +1,77 @@
+═══════════════════════════════════════════════════════════
+         Control vs R Group Analysis Summary
+═══════════════════════════════════════════════════════════
+
+Analysis Date: 2026-02-18 16:29:05 
+
+─────────────────────────────────────────────────────────
+1. Sample Overview
+─────────────────────────────────────────────────────────
+
+Total Samples:
+  • Control: n = 25
+  • R: n = 24
+
+─────────────────────────────────────────────────────────
+2. Tissue Distribution
+─────────────────────────────────────────────────────────
+
+# A tibble: 4 × 3
+  Tissue     Control     R
+  <chr>        <int> <int>
+1 Blood           10     8
+2 Epithelium       5     6
+3 Lymph Node       5     5
+4 Spleen           5     5
+
+─────────────────────────────────────────────────────────
+3. Metrics Analyzed
+─────────────────────────────────────────────────────────
+
+  1. CD3+ T Cell Proportion (%)
+  2. CD4+ T Cell (% of CD3)
+  3. CD8+ T Cell (% of CD3)
+  4. CD8 / CD4 Ratio
+  5. IL-17+ (% of CD4)
+  6. IFN-γ+ (% of CD4)
+  7. IL-17 MFI (Intensity)
+  8. IFN-γ MFI (Intensity)
+
+─────────────────────────────────────────────────────────
+4. Output Structure
+─────────────────────────────────────────────────────────
+
+Main folder: Control_vs_R_Analysis 
+  ├── Epithelium/
+  │   ├── CD3_pct.pdf
+  │   ├── CD4_pct_CD3.pdf
+  │   └── ... (total 8 metrics)
+  ├── Lymph_Node/
+  │   ├── CD3_pct.pdf
+  │   ├── CD4_pct_CD3.pdf
+  │   └── ... (total 8 metrics)
+  ├── Spleen/
+  │   ├── CD3_pct.pdf
+  │   ├── CD4_pct_CD3.pdf
+  │   └── ... (total 8 metrics)
+  ├── Blood/
+  │   ├── CD3_pct.pdf
+  │   ├── CD4_pct_CD3.pdf
+  │   └── ... (total 8 metrics)
+
+─────────────────────────────────────────────────────────
+5. Statistical Testing
+─────────────────────────────────────────────────────────
+
+  Method: Wilcoxon rank sum test (default)
+  Comparison: Control (reference) vs R
+  Significance levels:
+    *    p < 0.05
+    **   p < 0.01
+    ***  p < 0.001
+    **** p < 0.0001
+    ns   not significant
+
+═══════════════════════════════════════════════════════════
+                    Analysis Complete
+═══════════════════════════════════════════════════════════

@@ -1,0 +1,8 @@
+"Genus","Pattern","Mean_abundance","Log_abundance","Degree","Max_EffectSize"
+"Anoxybacillus","No Clear Pattern",0.000228377174263016,-3.63944980171303,3,0.7971
+"Delftia","Recovery (Inverted-U)",0.00218643065196067,-2.66006570651055,1,0.7454
+"Bacillus","Full Recovery",0.00384122919334187,-2.41541673254178,2,0.7235
+"Cutibacterium","Worsening",0.00403965526278351,-2.393548200747,4,0.6487
+"Rodentibacter","Worsening",0.0220402692604323,-1.65676339997769,2,0
+"Lawsonella","Full Recovery",0.000303254936316463,-3.51676236692662,3,0
+"Streptococcus","Recovery (U-shape)",0.671582391745476,-0.172900052501947,1,0.646

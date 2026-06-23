@@ -1,0 +1,8 @@
+"Feature","Comparison","Group","Method","EffectSize","EffectSize_type","Z_statistic","P.unadj","P.adj","Significance"
+"Lachnospiraceae_UCG-006","DB_Control - DB_Treated","DB_Treated","Dunn",0.8944,"r (|Z|/sqrt(N))",-2.6833,0.00729035809153564,0.0218710742746069,"*"
+"Prevotellaceae_Ga6A1_group","DB_Control - DB_Treated","DB_Treated","Dunn",0.7971,"r (|Z|/sqrt(N))",-2.3912,0.01679522311226,0.02519283466839,"*"
+"Erysipelotrichaceae","DB_Control - DB_Treated","DB_Treated","Dunn",0.7581,"r (|Z|/sqrt(N))",-2.2743,0.0229483078228747,0.0688449234686239,"ns"
+"Prevotellaceae_NK3B31_group","DB_Control - DB_Treated","DB_Treated","Dunn",0.7485,"r (|Z|/sqrt(N))",-2.2454,0.0247396712953285,0.0742190138859855,"ns"
+"UCG-010","DB_Control - DB_Treated","DB_Treated","Dunn",0.646,"r (|Z|/sqrt(N))",-1.9379,0.0526323025657406,0.0789484538486109,"ns"
+"Parabacteroides","DB_Control - DB_Treated","DB_Treated","Dunn",0.6264,"r (|Z|/sqrt(N))",-1.8791,0.0602287828562387,0.090343174284358,"ns"
+"Monoglobus","DB_Control - DB_Treated","DB_Treated","Dunn",0.6264,"r (|Z|/sqrt(N))",-1.8791,0.0602287828562386,0.0903431742843579,"ns"

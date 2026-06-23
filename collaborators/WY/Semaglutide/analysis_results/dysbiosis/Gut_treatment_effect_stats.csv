@@ -1,0 +1,4 @@
+"Site","Method","P_value","Comparison"
+"Gut","MedianCLV",0.1,"DB_Treated_vs_DB_Control"
+"Gut","ShannonJSD",0.4,"DB_Treated_vs_DB_Control"
+"Gut","CloudScore",0.1,"DB_Treated_vs_DB_Control"

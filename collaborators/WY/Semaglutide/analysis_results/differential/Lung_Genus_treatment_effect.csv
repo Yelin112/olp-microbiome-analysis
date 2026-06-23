@@ -1,0 +1,3 @@
+"Feature","Comparison","Group","Method","EffectSize","EffectSize_type","Z_statistic","P.unadj","P.adj","Significance"
+"Enterobacter","DB_Control - DB_Treated","DB_Control","Dunn",0.7621,"r (|Z|/sqrt(N))",2.2862,0.0222431205913499,0.0667293617740498,"ns"
+"Ellin6067","DB_Control - DB_Treated","DB_Control","Dunn",0.6237,"r (|Z|/sqrt(N))",1.8712,0.0613169530776831,0.0919754296165246,"ns"

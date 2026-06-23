@@ -1,0 +1,2 @@
+"gene_id","gene_name","lfc_db_wt","padj_db_wt","lfc_trt_db","padj_trt_db","lfc_trt_wt","padj_trt_wt","rescue_pct","rescue_type"
+"ENSMUSG00000027556","Car1",-19.5278488536244,0.00164263902588712,22.6343377123581,0.000485328544839274,3.1064888587337,0.999938254913919,1.15907993153875,"Complete Rescue"

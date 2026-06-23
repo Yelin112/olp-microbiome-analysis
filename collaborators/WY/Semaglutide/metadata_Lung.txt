@@ -1,0 +1,13 @@
+Sample	Site	Condition	Treatment	GroupInAll	FileName
+dbN_1_L	Lung	DB	Control	Lung_DB_Control	dbN.1.L.fastq.gz
+dbN_2_L	Lung	DB	Control	Lung_DB_Control	dbN.2.L.fastq.gz
+dbN_3_L	Lung	DB	Control	Lung_DB_Control	dbN.3.L.fastq.gz
+dbS_1_L	Lung	DB	Treated	Lung_DB_Treated	dbS.1.L.fastq.gz
+dbS_2_L	Lung	DB	Treated	Lung_DB_Treated	dbS.2.L.fastq.gz
+dbS_3_L	Lung	DB	Treated	Lung_DB_Treated	dbS.3.L.fastq.gz
+WTN_1_L	Lung	WT	Control	Lung_WT_Control	WTN.1.L.fastq.gz
+WTN_2_L	Lung	WT	Control	Lung_WT_Control	WTN.2.L.fastq.gz
+WTN_3_L	Lung	WT	Control	Lung_WT_Control	WTN.3.L.fastq.gz
+WTS_1_L	Lung	WT	Treated	Lung_WT_Treated	WTS.1.L.fastq.gz
+WTS_2_L	Lung	WT	Treated	Lung_WT_Treated	WTS.2.L.fastq.gz
+WTS_3_L	Lung	WT	Treated	Lung_WT_Treated	WTS.3.L.fastq.gz
