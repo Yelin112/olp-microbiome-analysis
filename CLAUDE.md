@@ -73,6 +73,15 @@ source("../../R/r_functions/lib/compare_plot/compare_plot_optimized.R")
 - **版本控制**：Git，已关联 GitHub remote origin
 - **AI 工具**：Claude Code（`.claude/settings.local.json`）
 
+## 跨项目共享知识库
+
+`~/projects/research-commons`（GitHub: `Yelin112/research-commons`）是跨项目共享的知识库，收纳函数库、流程模板、方法笔记、工具手册。做分析前先去那里查有没有现成的，避免重复摸索；本项目里定型的可复用资产（函数、流程参数组合、方法论笔记）也应该按 `anthropic-skills:commons-harvest` skill 的规范沉淀过去，而不是只留在本项目里。
+
+与本项目直接相关的资料：
+- `references/biobakery/bioBakery-overview.md` —— bioBakery工具全景手册（HUMAnN/MetaPhlAn/StrainPhlAn/MaAsLin等），含 OLP口腔微生物组相关性速查、以及 Assembly workflow(sgb_pipeline) vs 手工 MEGAHIT+Prodigal+CD-HIT+eggNOG-mapper 流程的取舍结论。做宏基因组物种/功能谱分析、菌株分析、差异丰度检验前应先查这份手册。
+
+云端 Claude Code 会话默认看不到 research-commons，需要显式 attach（`add_repo` owner=Yelin112 repo=research-commons）；本地/SSH 会话直接用文件路径访问。
+
 ## .gitignore 规则
 
 脚本纳入 Git；PDF/PNG/SVG 输出不入库；data/metadata 不入库；RData/Rhistory 不入库。
