@@ -1,8 +1,12 @@
 # =============================================================================
-# Tidyplots 主题管理系统
+# Tidyplots 主题管理系统 (⚠️ 仅用于 {tidyplots} 包，非 ggplot2)
 # 作者: Assistant
 # 版本: 1.0
-# 说明: 提供多种预设科研主题，支持灵活自定义
+# 状态: 保留兼容旧脚本，新开发请用 R/utils/theme_system.R
+#
+# ⚠️ 注意: 本文件定义的 theme_nature() / theme_cell() 等函数名与
+#    R/utils/theme_system.R 同名但签名不同（本文件接收 tidyplot 对象，
+#    theme_system.R 返回 ggplot2 theme）。不要同时 source 两个文件。
 # =============================================================================
 
 library(tidyplots)
@@ -670,5 +674,5 @@ print_usage_guide <- function() {
   cat("  ", paste(names(THEME_PRESETS), collapse = ", "), "\n\n")
 }
 
-# 加载时显示使用指南
-print_usage_guide()
+# 加载时显示使用指南（已关闭，避免污染 console）
+# print_usage_guide()

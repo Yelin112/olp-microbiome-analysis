@@ -251,7 +251,6 @@ NetworkAnalyzer <- R6::R6Class(
         message(
           "Note: Network has negative weights. Using absolute values for centrality calculations."
         )
-        temp_network <- self$network
         E(temp_network)$weight <- abs(E(temp_network)$weight)
       }
 
@@ -548,6 +547,10 @@ NetworkAnalyzer <- R6::R6Class(
     #' @param color_by Node attribute for coloring
     #' @param size_by Node attribute for sizing
     #' @param method Plotting method ("igraph", "ggraph", "visNetwork")
+    #' @param palette Palette name (from palette_system.R) or color vector.
+    #'   NULL uses default palette. Only used when color_by is set.
+    #' @param theme_use ggplot2 theme function (ggraph method only).
+    #'   NULL uses theme_pub_stat if available, otherwise theme_minimal.
     #' @param ... Additional parameters passed to plotting function
     #'
     #' @return Plot object
@@ -556,6 +559,8 @@ NetworkAnalyzer <- R6::R6Class(
       color_by = "module",
       size_by = "degree",
       method = c("igraph", "ggraph", "visNetwork"),
+      palette = NULL,
+      theme_use = NULL,
       ...
     ) {
       if (is.null(self$network)) {
@@ -565,11 +570,11 @@ NetworkAnalyzer <- R6::R6Class(
       method <- match.arg(method)
 
       if (method == "igraph") {
-        p <- private$plot_igraph(layout, color_by, size_by, ...)
+        p <- private$plot_igraph(layout, color_by, size_by, palette, ...)
       } else if (method == "ggraph") {
-        p <- private$plot_ggraph(layout, color_by, size_by, ...)
+        p <- private$plot_ggraph(layout, color_by, size_by, palette, theme_use, ...)
       } else if (method == "visNetwork") {
-        p <- private$plot_visnetwork(color_by, size_by, ...)
+        p <- private$plot_visnetwork(color_by, size_by, palette, ...)
       }
 
       return(p)
@@ -896,7 +901,7 @@ NetworkAnalyzer <- R6::R6Class(
     },
 
     # Plot with igraph
-    plot_igraph = function(layout, color_by, size_by, ...) {
+    plot_igraph = function(layout, color_by, size_by, palette = NULL, ...) {
       # Handle negative weights for layout calculation
       temp_network <- self$network
       has_negative_weights <- any(E(temp_network)$weight < 0, na.rm = TRUE)
@@ -945,16 +950,27 @@ NetworkAnalyzer <- R6::R6Class(
         coords <- layout
       }
 
-      # Set colors
+      # Set colors using project palette system when available
+      has_palette_sys <- exists("get_colors", mode = "function")
       if (
         !is.null(color_by) && color_by %in% names(vertex_attr(self$network))
       ) {
         colors <- vertex_attr(self$network, color_by)
         if (is.numeric(colors)) {
-          vertex_colors <- heat.colors(100)[cut(colors, 100)]
+          if (has_palette_sys) {
+            pal <- get_colors(palette, n = 100, type = "continuous")
+            vertex_colors <- pal[cut(colors, 100, labels = FALSE)]
+          } else {
+            vertex_colors <- heat.colors(100)[cut(colors, 100)]
+          }
         } else {
           unique_vals <- unique(colors)
-          color_palette <- rainbow(length(unique_vals))
+          n_vals <- length(unique_vals)
+          if (has_palette_sys) {
+            color_palette <- get_colors(palette, n = n_vals)
+          } else {
+            color_palette <- rainbow(n_vals)
+          }
           vertex_colors <- color_palette[match(colors, unique_vals)]
         }
       } else {
@@ -982,13 +998,13 @@ NetworkAnalyzer <- R6::R6Class(
     },
 
     # Plot with ggraph
-    plot_ggraph = function(layout, color_by, size_by, ...) {
+    plot_ggraph = function(layout, color_by, size_by, palette = NULL, theme_use = NULL, ...) {
       if (!requireNamespace("ggraph", quietly = TRUE)) {
         stop("Package 'ggraph' required for this plotting method")
       }
-
-      library(ggraph)
-      library(ggplot2)
+      if (!requireNamespace("ggplot2", quietly = TRUE)) {
+        stop("Package 'ggplot2' required for this plotting method")
+      }
 
       # Handle negative weights for layout calculation
       temp_network <- self$network
@@ -1035,37 +1051,49 @@ NetworkAnalyzer <- R6::R6Class(
         coords <- layout_func(temp_network)
 
         # Use manual layout with original network
-        p <- ggraph(
+        p <- ggraph::ggraph(
           self$network,
           layout = "manual",
           x = coords[, 1],
           y = coords[, 2]
         ) +
-          geom_edge_link(aes(alpha = 0.5), show.legend = FALSE) +
-          geom_node_point(aes_string(color = color_by, size = size_by)) +
-          geom_node_text(aes(label = name), repel = TRUE, size = 3) +
-          theme_graph() +
-          theme(legend.position = "right")
+          ggraph::geom_edge_link(aes(alpha = 0.5), show.legend = FALSE) +
+          ggraph::geom_node_point(aes(color = .data[[color_by]], size = .data[[size_by]])) +
+          ggraph::geom_node_text(aes(label = name), repel = TRUE, size = 3) +
+          ggraph::theme_graph() +
+          ggplot2::theme(legend.position = "right")
       } else {
         # Layout is already coordinates
-        p <- ggraph(self$network, layout = layout) +
-          geom_edge_link(aes(alpha = 0.5), show.legend = FALSE) +
-          geom_node_point(aes_string(color = color_by, size = size_by)) +
-          geom_node_text(aes(label = name), repel = TRUE, size = 3) +
-          theme_graph() +
-          theme(legend.position = "right")
+        p <- ggraph::ggraph(self$network, layout = layout) +
+          ggraph::geom_edge_link(aes(alpha = 0.5), show.legend = FALSE) +
+          ggraph::geom_node_point(aes(color = .data[[color_by]], size = .data[[size_by]])) +
+          ggraph::geom_node_text(aes(label = name), repel = TRUE, size = 3) +
+          ggraph::theme_graph() +
+          ggplot2::theme(legend.position = "right")
+      }
+
+      # Apply project color scale if palette system is available
+      has_palette_sys <- exists("scale_fill_pub_d", mode = "function")
+      if (has_palette_sys) {
+        p <- p + scale_color_pub_d(palette)
+      }
+
+      # Apply user-specified theme, project theme, or keep ggraph default
+      if (is.function(theme_use)) {
+        p <- p + theme_use()
+      } else if (exists("theme_pub_stat", mode = "function")) {
+        p <- p + theme_pub_stat()
       }
 
       return(p)
     },
 
     # Plot with visNetwork
-    plot_visnetwork = function(color_by, size_by, ...) {
+    plot_visnetwork = function(color_by, size_by, palette = NULL, ...) {
       if (!requireNamespace("visNetwork", quietly = TRUE)) {
         stop("Package 'visNetwork' required for this plotting method")
       }
 
-      library(visNetwork)
 
       # Prepare nodes data
       nodes_df <- data.frame(
@@ -1077,6 +1105,15 @@ NetworkAnalyzer <- R6::R6Class(
         !is.null(color_by) && color_by %in% names(vertex_attr(self$network))
       ) {
         nodes_df$group <- vertex_attr(self$network, color_by)
+        # Apply project palette for group colors when available
+        if (exists("get_colors", mode = "function")) {
+          n_groups <- length(unique(nodes_df$group))
+          group_colors <- get_colors(palette, n = n_groups)
+          nodes_df$color <- group_colors[match(
+            nodes_df$group,
+            unique(nodes_df$group)
+          )]
+        }
       }
 
       if (!is.null(size_by) && size_by %in% names(vertex_attr(self$network))) {
@@ -1088,8 +1125,11 @@ NetworkAnalyzer <- R6::R6Class(
       edges_df$from <- match(edges_df$from, V(self$network)$name)
       edges_df$to <- match(edges_df$to, V(self$network)$name)
 
-      visNetwork(nodes_df, edges_df, ...) %>%
-        visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+      visNetwork::visNetwork(nodes_df, edges_df, ...) %>%
+        visNetwork::visOptions(
+          highlightNearest = TRUE,
+          nodesIdSelection = TRUE
+        )
     }
   )
 )
@@ -1134,10 +1174,15 @@ print.NetworkComparison <- function(x, ...) {
 }
 
 #' Plot method for NetworkComparison
+#'
+#' @param palette Palette name or color vector for fills
+#' @param theme_use ggplot2 theme function. NULL uses theme_pub_stat if available.
 #' @export
 plot.NetworkComparison <- function(
   x,
   type = c("properties", "roles", "degree"),
+  palette = NULL,
+  theme_use = NULL,
   ...
 ) {
   type <- match.arg(type)
@@ -1146,27 +1191,43 @@ plot.NetworkComparison <- function(
     stop("Package 'ggplot2' required for plotting")
   }
 
-  library(ggplot2)
+  # Determine theme: user-specified > project > minimal
+  has_proj_theme <- exists("theme_pub_stat", mode = "function")
+  use_theme <- if (is.function(theme_use)) {
+    theme_use
+  } else if (has_proj_theme) {
+    theme_pub_stat
+  } else {
+    ggplot2::theme_minimal
+  }
 
+  # Determine color scale when palette system is available
+  has_palette_sys <- exists("scale_fill_pub_d", mode = "function")
+
+  p <- NULL
   if (type == "properties") {
-    p <- ggplot(x$properties, aes(x = property)) +
-      geom_col(
-        aes(y = network1, fill = "Network 1"),
-        position = position_dodge(),
+    p <- ggplot2::ggplot(x$properties, ggplot2::aes(x = property)) +
+      ggplot2::geom_col(
+        ggplot2::aes(y = network1, fill = "Network 1"),
+        position = ggplot2::position_dodge(),
         alpha = 0.7
       ) +
-      geom_col(
-        aes(y = network2, fill = "Network 2"),
-        position = position_dodge(),
+      ggplot2::geom_col(
+        ggplot2::aes(y = network2, fill = "Network 2"),
+        position = ggplot2::position_dodge(),
         alpha = 0.7
       ) +
-      labs(
+      ggplot2::labs(
         title = "Network Properties Comparison",
         y = "Value",
         fill = "Network"
       ) +
-      theme_minimal() +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+      use_theme() +
+      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+
+    if (has_palette_sys) {
+      p <- p + scale_fill_pub_d(palette)
+    }
   } else if (type == "roles" && !is.null(x$node_roles)) {
     roles_long <- tidyr::pivot_longer(
       x$node_roles,
@@ -1175,15 +1236,22 @@ plot.NetworkComparison <- function(
       values_to = "count"
     )
 
-    p <- ggplot(roles_long, aes(x = role, y = count, fill = network)) +
-      geom_bar(stat = "identity", position = "dodge") +
-      labs(
+    p <- ggplot2::ggplot(
+      roles_long,
+      ggplot2::aes(x = role, y = count, fill = network)
+    ) +
+      ggplot2::geom_bar(stat = "identity", position = "dodge") +
+      ggplot2::labs(
         title = "Node Roles Distribution Comparison",
         x = "Role",
         y = "Count"
       ) +
-      theme_minimal() +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1))
+      use_theme() +
+      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+
+    if (has_palette_sys) {
+      p <- p + scale_fill_pub_d(palette)
+    }
   } else if (type == "degree" && !is.null(x$degree_distribution)) {
     deg_data <- data.frame(
       degree = c(
@@ -1199,14 +1267,28 @@ plot.NetworkComparison <- function(
       )
     )
 
-    p <- ggplot(deg_data, aes(x = degree, fill = network)) +
-      geom_density(alpha = 0.5) +
-      labs(
+    p <- ggplot2::ggplot(
+      deg_data,
+      ggplot2::aes(x = degree, fill = network)
+    ) +
+      ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::labs(
         title = "Degree Distribution Comparison",
         x = "Degree",
         y = "Density"
       ) +
-      theme_minimal()
+      use_theme()
+
+    if (has_palette_sys) {
+      p <- p + scale_fill_pub_d(palette)
+    }
+  }
+
+  if (is.null(p)) {
+    stop(
+      "No data available for type = '", type, "' in this NetworkComparison ",
+      "object (e.g. 'roles' needs node_roles from calculate_properties(calculate_roles = TRUE))"
+    )
   }
 
   return(p)

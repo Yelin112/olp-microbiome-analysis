@@ -1,7 +1,21 @@
 library(ggplot2)
 library(ggpubr)
 library(dplyr)
-library(RColorBrewer)
+# RColorBrewer 已委托给 palette_system.R 的 get_colors() 内部 requireNamespace 处理
+
+# ---- 加载工具模块（如调用方已加载则跳过，避免路径解析问题）----
+if (!exists("%||%") || !exists("get_colors")) {
+  # 推荐：脚本先 source R/init.R 再 load_utils()。此处为兜底，
+  # 依赖 OLP_ROOT 环境变量（不再使用 sys.frame(1)$ofile，Rscript 下会失效）
+  .init <- file.path(Sys.getenv("OLP_ROOT"), "R", "init.R")
+  if (!file.exists(.init)) {
+    stop("未找到 utils 函数（%||% / get_colors）。请先 source R/init.R 并调用 load_utils()，",
+         "或设置 OLP_ROOT 环境变量。")
+  }
+  source(.init)
+  load_utils()   # %||%, %ni%, get_colors(), scale_fill_pub_d()
+  rm(.init)
+}
 
 #' 组间比较可视化函数 (compare_plot)
 #'
@@ -33,7 +47,9 @@ library(RColorBrewer)
 #' @param hide_ns 是否隐藏非显著结果 (逻辑值)。默认 TRUE。
 #' @param step_increase 显著性标注的垂直间距增量。默认 0.12，可调整避免重叠。
 #' @param y_expand Y轴上方扩展比例，为显著性标注留出空间。默认 0.15 (15%)。
-#' @param palette 配色方案。可以是预设名 ("NPG", "AAAS", "Paired"...) 或自定义颜色向量。
+#' @param palette 配色方案。NULL 使用全局默认（palette_system.R）；预设名 ("NPG", "AAAS", "JAMA"…)；
+#'   或自定义颜色向量；或 RColorBrewer/paletteer 中的任意色板名。
+#'   详见 palette_system.R 的 get_colors()。
 #' @param theme_use 使用的主题函数。例如 theme_classic, theme_bw, theme_minimal。
 #' @param title,xlab,ylab 标题与轴标签。
 #' @param strategy 自适应策略。"auto"（默认）根据样本量自动选择绘图类型；
@@ -93,7 +109,7 @@ compare_plot <- function(
   hide_ns = FALSE,
   step_increase = 0.12,
   y_expand = 0.15,
-  palette = "NPG",
+  palette = NULL,
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -205,7 +221,7 @@ compare_plot <- function(
   # 颜色配置
   # ============================================================================
 
-  final_colors <- get_color_palette(palette, nlevels(data[[fill_var]]))
+  final_colors <- get_colors(palette, n = nlevels(data[[fill_var]]), type = "discrete")
 
   # ============================================================================
   # 绘图初始化
@@ -307,8 +323,6 @@ compare_plot <- function(
   # ============================================================================
 
   if (add_stat %in% c("t.test", "wilcox.test", "anova", "kruskal.test")) {
-    y_range <- range(data[[value.var]], na.rm = TRUE)
-    y_margin <- diff(y_range) * y_expand
     p <- p +
       scale_y_continuous(
         expand = expansion(mult = c(0.05, y_expand))
@@ -368,112 +382,15 @@ compare_plot <- function(
 # 辅助函数
 # ==============================================================================
 
-#' 获取调色板
+#' 获取调色板（向后兼容包装）
+#'
+#' @description
+#' 委托给 palette_system.R 的 get_colors()。
+#' 保留此函数以确保依赖 compare_plot 的旧脚本不会报错。
+#'
 #' @keywords internal
 get_color_palette <- function(palette, n_groups) {
-  # 预设科研配色
-  sci_palettes <- list(
-    "NPG" = c(
-      "#E64B35",
-      "#4DBBD5",
-      "#00A087",
-      "#3C5488",
-      "#F39B7F",
-      "#8491B4",
-      "#91D1C2",
-      "#DC0000",
-      "#7E6148"
-    ),
-    "AAAS" = c(
-      "#3B4992",
-      "#EE0000",
-      "#008B45",
-      "#631879",
-      "#008280",
-      "#BB0021",
-      "#5F559B",
-      "#A20056",
-      "#808180"
-    ),
-    "NEJM" = c(
-      "#BC3C29",
-      "#0072B5",
-      "#E18727",
-      "#20854E",
-      "#7876B1",
-      "#6F99AD",
-      "#FFDC91",
-      "#EE4C97"
-    ),
-    "Lancet" = c(
-      "#00468B",
-      "#ED0000",
-      "#42B540",
-      "#0099B4",
-      "#925E9F",
-      "#FDAF91",
-      "#AD002A",
-      "#ADB6B6"
-    ),
-    "JCO" = c(
-      "#0073C2",
-      "#EFC000",
-      "#868686",
-      "#CD534C",
-      "#7AA6DC",
-      "#003C67",
-      "#8F7700",
-      "#3B3B3B"
-    ),
-    "JAMA" = c(
-      "#374E55",
-      "#DF8F44",
-      "#00A1D5",
-      "#B24745",
-      "#79AF97",
-      "#6A6599",
-      "#80796B"
-    ),
-    "D3" = c(
-      "#1F77B4",
-      "#FF7F0E",
-      "#2CA02C",
-      "#D62728",
-      "#9467BD",
-      "#8C564B",
-      "#E377C2",
-      "#7F7F7F",
-      "#BCBD22",
-      "#17BECF"
-    )
-  )
-
-  # 解析配色方案
-  if (length(palette) == 1 && is.character(palette)) {
-    if (palette %in% names(sci_palettes)) {
-      base_cols <- sci_palettes[[palette]]
-    } else if (palette %in% rownames(RColorBrewer::brewer.pal.info)) {
-      max_n <- RColorBrewer::brewer.pal.info[palette, "maxcolors"]
-      base_cols <- RColorBrewer::brewer.pal(
-        max(3, min(n_groups, max_n)),
-        palette
-      )
-    } else {
-      warning("配色方案 '", palette, "' 未找到，使用默认 NPG 配色。")
-      base_cols <- sci_palettes[["NPG"]]
-    }
-  } else {
-    base_cols <- palette
-  }
-
-  # 扩展颜色以匹配分组数
-  if (n_groups > length(base_cols)) {
-    final_colors <- colorRampPalette(base_cols)(n_groups)
-  } else {
-    final_colors <- base_cols[1:n_groups]
-  }
-
-  return(final_colors)
+  get_colors(palette, n = n_groups, type = "discrete")
 }
 
 
@@ -866,8 +783,4 @@ add_stat_test <- function(
 }
 
 
-#' 空值合并操作符
-#' @keywords internal
-`%||%` <- function(a, b) {
-  if (is.null(a)) b else a
-}
+

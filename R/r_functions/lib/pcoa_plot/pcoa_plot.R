@@ -1,59 +1,33 @@
 # ============================================================================
 # pcoa_plot() — PCoA / 二维散点图（含边际图）
 # 开发日期：2026-04-06
-# 依赖：ggplot2（必需）、ggExtra（density 边际）、aplot（boxplot 边际）
+# 依赖：ggplot2（必需）、utils/palette_system.R、ggExtra（density 边际）、aplot（boxplot 边际）
 # ============================================================================
 
 library(ggplot2)
 
+# ---- 加载工具模块（配色、%||%）----
+if (!exists("%||%") || !exists("get_colors")) {
+  # 推荐：脚本先 source R/init.R 再 load_utils()。此处为兜底，依赖 OLP_ROOT 环境变量
+  .init <- file.path(Sys.getenv("OLP_ROOT"), "R", "init.R")
+  if (!file.exists(.init)) {
+    stop("未找到 utils 函数（%||% / get_colors）。请先 source R/init.R 并调用 load_utils()，",
+         "或设置 OLP_ROOT 环境变量。")
+  }
+  source(.init)
+  load_utils()
+  rm(.init)
+}
+
 # ── 内部工具 ─────────────────────────────────────────────────────────────────
 
-`%||%` <- function(a, b) if (is.null(a)) b else a
-
-#' 获取调色板颜色
+#' 获取分组颜色：命名向量原样返回（由主函数按组名校验），其余交给 palette_system
 #' @noRd
 .pcoa_get_colors <- function(palette, n) {
-  npg <- c(
-    "#E64B35",
-    "#4DBBD5",
-    "#00A087",
-    "#3C5488",
-    "#F39B7F",
-    "#8491B4",
-    "#91D1C2",
-    "#DC0000",
-    "#7E6148",
-    "#B09C85"
-  )
-  if (length(palette) > 1) {
-    # 有 names：直接返回整个命名向量，交由主函数校验；无 names：按位置截取
-    if (!is.null(names(palette))) {
-      return(palette)
-    }
-    return(palette[seq_len(n)])
+  if (length(palette) > 1 && !is.null(names(palette))) {
+    return(palette)
   }
-  if (palette == "NPG") {
-    base_cols <- npg
-  } else if (
-    requireNamespace("RColorBrewer", quietly = TRUE) &&
-      palette %in% rownames(RColorBrewer::brewer.pal.info)
-  ) {
-    max_n <- RColorBrewer::brewer.pal.info[palette, "maxcolors"]
-    base_cols <- RColorBrewer::brewer.pal(min(max_n, max(3, n)), palette)
-  } else {
-    warning(sprintf(
-      "未识别的 palette '%s'，已回退为 NPG。\n",
-      "  可用预设：\"NPG\"，或任意 RColorBrewer 色板名称",
-      "  （运行 RColorBrewer::display.brewer.all() 查看全部）",
-      palette
-    ))
-    base_cols <- npg
-  }
-  if (n <= length(base_cols)) {
-    base_cols[seq_len(n)]
-  } else {
-    colorRampPalette(base_cols)(n)
-  }
+  get_colors(palette, n = n)
 }
 
 # ── 主函数 ───────────────────────────────────────────────────────────────────
@@ -96,8 +70,10 @@ library(ggplot2)
 #' @param point_size   散点大小，默认 2.5
 #' @param point_alpha  散点透明度，默认 0.85
 #' @param point_shape  散点形状，默认 16（实心圆）；21-25 为有描边的填充形状
-#' @param palette      配色方案："NPG"（默认）、"Set1"、"Set2"，
-#'   或颜色向量（如 \code{c("#E64B35", "#4DBBD5")}）
+#' @param palette      配色方案，交给 palette_system.R 的 \code{get_colors()} 解析：
+#'   预设名（"NPG" 默认、"AAAS"、"JAMA" 等）、RColorBrewer 色板名，
+#'   或颜色向量（如 \code{c("#E64B35", "#4DBBD5")}）；
+#'   命名向量（如 \code{c(Control = "#E64B35", Treatment = "#4DBBD5")}）按组名映射
 #' @param marginal_size 边际图宽/高占主图的比例，默认 0.25（即 25\%）
 #' @param xlab         x 轴标签，NULL 则使用列名
 #' @param ylab         y 轴标签，NULL 则使用列名

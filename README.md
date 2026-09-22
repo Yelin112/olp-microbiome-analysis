@@ -49,7 +49,9 @@ OLP (口腔扁平苔藓) 微生物组研究相关的数据分析工作目录。
 ```r
 # 在项目脚本中引用库函数
 source("../../R/r_functions/lib/compare_plot/compare_plot_optimized.R")
-source("../../R/utils/my_themes.R")
+source("../../R/utils/helpers.R")
+source("../../R/utils/palette_system.R")    # 颜色系统
+source("../../R/utils/theme_system.R")     # 主题系统（可选）
 ```
 
 ## 工作流程
