@@ -106,7 +106,7 @@ print(p_raw)
 # ════════════════════════════════════════════════════════════════════════════
 library(patchwork)
 library(MASS) # kde_modal 需要
-source("R/r_functions/dev/enrich_clusters/function.R")
+source(file.path(Sys.getenv("R_TOOLKIT_ROOT"), "r_functions/dev/enrich_clusters/function.R"))
 
 # softpull 的手动中心（仅 softpull 需要；其他方法自动估计）
 enrich_centers <- data.frame(

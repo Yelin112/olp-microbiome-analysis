@@ -36,23 +36,25 @@ OLP（口腔扁平苔藓）vs 健康对照的 scRNA-seq 数据，目标是回答
 
 - 脚本开头统一用项目标准引导（不要写死路径、不要用 `sys.frame(1)$ofile`）：
   ```r
-  source(file.path(Sys.getenv("OLP_ROOT"), "R/init.R"))
+  source(file.path(Sys.getenv("R_TOOLKIT_ROOT"), "init.R"))
   load_utils(theme = TRUE)
   ```
-  运行前确认 `~/.Renviron` 中 `OLP_ROOT` 已设置，且跑过
-  `Rscript R/check_deps.R` 确认依赖齐全（见第 4 节）。
+  `R_TOOLKIT_ROOT` 指向独立仓库 [r-pub-toolkit](https://github.com/Yelin112/r-pub-toolkit)
+  （不在本仓库内，需要单独 `git clone`）；运行前确认服务器上已 clone 该仓库、
+  `~/.Renviron` 中 `R_TOOLKIT_ROOT` 已设置，且跑过 `Rscript check_deps.R`
+  （在 r-pub-toolkit 仓库里跑）确认依赖齐全（见第 4 节）。
 - 每个阶段结束后落一份可重新加载的中间结果（.rds 或等价形式），支持断点续跑，
   具体存放路径由执行者自定，但要在脚本/日志里说明清楚。
 - **分工原则（沿用 CLAUDE.md）**：服务器只做计算和导出中间表/RDS/PDF/PNG；
   不要在服务器上做 PPTX 导出或最终期刊级图表微调，那部分留到本地做。
-- 图表文字一律英文（沿用 `R/PLOTTING_CONVENTIONS.md`），配色/主题必须走
+- 图表文字一律英文（沿用 r-pub-toolkit 的 `PLOTTING_CONVENTIONS.md`），配色/主题必须走
   `get_colors()` / `scale_fill_pub_d()` / `theme_pub_*()`，**不要在脚本里
   自定义调色板或另起一套主题**。
 
 ## 4. 环境依赖
 
 预计新增以下 R 包依赖，执行前检查是否已安装，缺失的登记进
-`R/check_deps.R` 的 `DEPS` 表（只报告缺失，不自动装，装包需征得用户同意）：
+r-pub-toolkit 的 `check_deps.R` 的 `DEPS` 表（只报告缺失，不自动装，装包需征得用户同意）：
 
 - 核心：`Seurat` (>=5.0)、`SeuratObject`、`Matrix`
 - 整合：`harmony`
