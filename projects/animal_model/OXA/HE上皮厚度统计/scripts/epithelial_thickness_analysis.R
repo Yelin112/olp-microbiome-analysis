@@ -32,10 +32,15 @@ source(file.path(
   "r_functions/lib/compare_plot/compare_plot_optimized.R"
 )) # compare_plot()
 
+# 本仓库（olp-microbiome-analysis）根目录：脚本本身在这个仓库里，用 git 定位
+# （不能用 PROJ——PROJ 现在指向独立的 r-pub-toolkit 仓库，没有 projects/ 目录）
+REPO_ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE, stderr = FALSE), error = function(e) "")
+if (length(REPO_ROOT) != 1 || !nzchar(REPO_ROOT)) stop("找不到本仓库根目录：请在仓库目录内运行脚本")
+
 # === 读取数据 ===
 raw_data <- read.csv(
   file.path(
-    PROJ,
+    REPO_ROOT,
     "projects/animal_model/OXA/HE上皮厚度统计/data/上皮厚度_标准长表.csv"
   ),
   stringsAsFactors = FALSE

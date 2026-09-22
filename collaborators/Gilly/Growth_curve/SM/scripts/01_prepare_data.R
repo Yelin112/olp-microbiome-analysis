@@ -31,7 +31,12 @@ PROJ <- Sys.getenv("R_TOOLKIT_ROOT", unset = "")
 if (!nzchar(PROJ)) PROJ <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE, stderr = FALSE), error = function(e) "")
 if (length(PROJ) != 1 || !nzchar(PROJ)) stop("找不到仓库根目录：请设置 R_TOOLKIT_ROOT 环境变量，或在仓库目录内运行")
 source(file.path(PROJ, "init.R"))
-source(file.path(PROJ, "collaborators/Gilly/Growth_curve/SM/scripts/_common.R"))
+
+# 本仓库（olp-microbiome-analysis）根目录：脚本本身在这个仓库里，用 git 定位
+# （不能用 PROJ——PROJ 现在指向独立的 r-pub-toolkit 仓库，没有 collaborators/ 目录）
+REPO_ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE, stderr = FALSE), error = function(e) "")
+if (length(REPO_ROOT) != 1 || !nzchar(REPO_ROOT)) stop("找不到本仓库根目录：请在仓库目录内运行脚本")
+source(file.path(REPO_ROOT, "collaborators/Gilly/Growth_curve/SM/scripts/_common.R"))
 
 BATCH_ID <- "batch3" # <-- 手动改成要处理的批次，例如 "batch2" / "batch3"
 BATCH_ID <- resolve_batch_id(BATCH_ID)

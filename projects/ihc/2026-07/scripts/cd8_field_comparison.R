@@ -25,8 +25,13 @@ source(file.path(
   "r_functions/lib/compare_plot/compare_plot_optimized.R"
 ))
 
-DATA_DIR <- file.path(PROJ, "projects/ihc/2026-07/data")
-OUTPUT_DIR <- file.path(PROJ, "projects/ihc/2026-07/output")
+# 本仓库（olp-microbiome-analysis）根目录：脚本本身在这个仓库里，用 git 定位
+# （不能用 PROJ——PROJ 现在指向独立的 r-pub-toolkit 仓库，没有 projects/ 目录）
+REPO_ROOT <- tryCatch(system2("git", c("rev-parse", "--show-toplevel"), stdout = TRUE, stderr = FALSE), error = function(e) "")
+if (length(REPO_ROOT) != 1 || !nzchar(REPO_ROOT)) stop("找不到本仓库根目录：请在仓库目录内运行脚本")
+
+DATA_DIR <- file.path(REPO_ROOT, "projects/ihc/2026-07/data")
+OUTPUT_DIR <- file.path(REPO_ROOT, "projects/ihc/2026-07/output")
 FIG_DIR <- file.path(OUTPUT_DIR, "figures")
 STAT_DIR <- file.path(OUTPUT_DIR, "stats")
 
