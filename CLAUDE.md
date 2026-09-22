@@ -93,31 +93,13 @@ load_lib("compare_plot")                                      # 加载 lib 下�
 这正是拆出独立仓库的原因）。
 
 ### 模式 3：R 函数开发
-在 **r-pub-toolkit 仓库**（不是本仓库）里，遵循其 `R_FUNCTION_DEV_WORKFLOW.md` 中的流程：
-1. 在 `r_functions/dev/<function_name>/` 创建 function.R + test.R + notes.md（绘图函数从
-   `utils/FUNCTION_TEMPLATE.R` 起步）
-2. 开发测试通过后，归档到 `r_functions/lib/<category>/`
-3. 旧版本备份到 `r_functions/archive/`
+函数开发在 **r-pub-toolkit 仓库**（不是本仓库）里进行，完整流程、编码约定、各阶段
+检查要求见它自己的 [CLAUDE.md](https://github.com/Yelin112/r-pub-toolkit/blob/master/CLAUDE.md)
+和 `R_FUNCTION_DEV_WORKFLOW.md`——这里不重复，避免两份文档各自漂移。
 
-**所有新函数（scratch → dev → lib 各阶段）必须遵守：**
-
-- 不写死绝对路径（`E:/`、`/home/`），不用 `sys.frame(1)$ofile`，不用 `../` 相对 `source()`；工具层由调用方 `load_utils()`，函数文件里只留 `R_TOOLKIT_ROOT` 兜底（写法见模板第 0 节）
-- 不定义调色板、不自己定义 `%||%`；颜色走 `get_colors()` / `scale_fill_pub_d()`
-- 绘图函数有 `palette` 和 `theme_use` 参数，默认值为 `NULL`
-- 可选依赖用 `requireNamespace()` 检查，并登记到 r-pub-toolkit 的 `check_deps.R` 的 `DEPS` 表
-- 缺 `officer`/`rvg` 等非核心包时降级，不中断
-
-**各阶段的检查要求**（在 r-pub-toolkit 仓库里用 `Rscript check_conventions.R <路径>` 检查，只读、不改文件）：
-
-| 阶段 | 要求 |
-|---|---|
-| scratch | 不强制；但打算继续开发的，改放 dev 前先清掉 ERROR |
-| dev | 无 ERROR（路径类问题，换机器就坏） |
-| 晋升 lib 前 | 无 ERROR、无 WARN（加 `--strict`）；确需保留的写法在行末加 `# convention-ok` 并在 notes.md 说明原因 |
-
-新建或修改函数后，主动对该函数目录运行一次检查，并在回复里报告结果。存量代码里已有一批历史违规（enrich_plot、abundance_processing 诊断图等），不需要顺手全改，只要求新增和被修改的部分合规。
-
-本仓库的 `R/scratch/` 仍然保留，放 OLP 专属的一次性/探索性脚本（不是通用工具，不进 r-pub-toolkit）。
+本仓库的 `R/scratch/` 保留，放 OLP 专属的一次性/探索性脚本（不是通用工具，不进
+r-pub-toolkit；一次性脚本里如果沉淀出值得复用的逻辑，再搬到 r-pub-toolkit 的
+`dev/` 走正式开发流程）。
 
 ## 多机协作（本地 Windows + 2 台 Linux 服务器）
 
